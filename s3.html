@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #800080;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        input, button, select {
+            margin: 10px;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #6200ea;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #6A5ACD;
+        }
+        canvas {
+            max-width: 50%;
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #6200ea;
+            color: white; /* Білий текст */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Діграма прослуховувань жанрів протягом останнього місяця</h1>
+
+    <!-- Вибір жанру -->
+    <label for="s3">Жанр музики:</label>
+    <select id="s3">
+        <option value="Рок">Рок</option>
+        <option value="Поп">Поп</option>
+        <option value="Джаз">Джаз</option>
+        <option value="Класика">Класика</option>
+        <option value="Фонк">Фонк</option>
+        <option value="Українське">Українське</option>
+    </select>
+
+    <!-- Введення днів -->
+    <label for="daysInput">Кількість днів (не більше 30):</label>
+    <input type="number" id="daysInput" placeholder="Введіть дні" max="30" />
+
+    <!-- Кнопки -->
+    <button id="saveButton">Зберегти</button>
+    <button id="generateChartButton">Отримати діаграму</button>
+    <button id="clearButton">Очистити дані</button>
+
+    <!-- Діаграма -->
+    <canvas id="musicChart"></canvas>
+
+    <script>
+        // Дані для діаграми
+        const genres = [];
+        const days = [];
+
+        // Додаємо жанр і дні в списки
+        document.getElementById("saveButton").addEventListener("click", function() {
+            const genre = document.getElementById("s3").value; // Обраний жанр
+            const daysInput = parseInt(document.getElementById("daysInput").value.trim());
+
+            if (!daysInput || daysInput < 1 || daysInput > 30) {
+                alert("Введіть коректну кількість днів (від 1 до 30)!");
+                return;
+            }
+
+            genres.push(genre);
+            days.push(daysInput);
+
+            // Очищаємо поле днів
+            document.getElementById("daysInput").value = "";
+
+            alert(`Дані для жанру "${genre}" збережено!`);
+        });
+
+        // Створюємо діаграму
+        let chart; // Змінна для збереження об'єкта діаграми
+        document.getElementById("generateChartButton").addEventListener("click", function() {
+            if (genres.length === 0 || days.length === 0) {
+                alert("Додайте дані перед створенням діаграми!");
+                return;
+            }
+
+            const ctx = document.getElementById("musicChart").getContext("2d");
+
+            // Знищуємо попередню діаграму, якщо існує
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: "bar", // Тип діаграми
+                data: {
+                    labels: genres, // Жанри музики
+                    datasets: [{
+                        label: "Кількість днів",
+                        data: days, // Дні
+                        backgroundColor: "#FFFFFF",
+                        borderColor: "rgb(0, 0, 0)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                   responsive: true,
+                   scales: {
+                       x: {
+                           ticks: {
+                               font: {
+                                   size: 25, // Розмір шрифта на осі X
+                                   family: 'Arial', // Шрифт
+                                   weight: 'bold', // Жирний шрифт
+                                   color: '#FFFFFF' // Колір шрифта на осі X
+                               }
+                           }
+
+                       },
+                       y: {
+                           ticks: {
+                               font: {
+                                   size: 25, // Розмір шрифта на осі Y
+                                   family: 'Arial', // Шрифт
+                                   weight: 'bold', // Жирний шрифт
+                                   color: '#FFFFFF' // Колір шрифта на осі Y
+                               },
+                               beginAtZero: true,
+                               max: 30 // Максимум для осі Y
+                           }
+                       }
+                   },
+                   plugins: {
+                       legend: {
+                           labels: {
+                               font: {
+                                   size: 25, // Розмір шрифта в легенді
+                                   family: 'Arial', // Шрифт
+                                   weight: 'bold', // Жирний шрифт
+                                   color: '#FFFFFF' // Колір шрифта в легенді
+                               }
+                           }
+                       },
+                       tooltip: {
+                           bodyFont: {
+                               size: 14, // Розмір шрифта підказки
+                               family: 'Arial', // Шрифт
+                               weight: 'normal', // Нормальний шрифт
+                               color: '#FFFFFF' // Колір шрифта підказки
+                           }
+                       }
+                   }
+               }
+           });
+       });
+
+        // Очищуємо дані
+        document.getElementById("clearButton").addEventListener("click", function() {
+            genres.length = 0;
+            days.length = 0;
+
+            // Знищуємо діаграму, якщо існує
+            if (chart) {
+                chart.destroy();
+            }
+
+            alert("Дані очищено! Почніть заново.");
+        });
+    </script>
+     <button class="back-button" onclick="window.location.href='ЛР.html#page7'">Повернутися на головну</button>
+</body>
+</html>

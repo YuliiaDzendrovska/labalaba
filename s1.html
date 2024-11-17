@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            background-color: #800080;
+            color: white; /* Білий текст */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        select, button {
+            margin: 10px 0;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #6200ea;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6A5ACD;
+        }
+
+        #recommendation {
+           margin-top: 20px;
+           font-size: 18px;
+       }
+
+       #songImage {
+           margin-top: 20px;
+           max-width: 300px;
+           border-radius: 10px;
+           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+       }
+       .back-button {
+           background-color: #6200ea;
+           color: white; /* Білий текст */
+           border: none;
+           padding: 10px 20px;
+           font-size: 16px;
+           cursor: pointer;
+           border-radius: 5px;
+           text-align: center;
+       }
+    </style>
+</head>
+<body>
+    <h1>Оберіть свій настрій</h1>
+    <select id="s1">
+        <option value="happy">Щасливий</option>
+        <option value="sad">Сумний</option>
+        <option value="energetic">Енергійний</option>
+        <option value="relaxed">Спокійний</option>
+        <option value="romantic">Романтичний</option>
+        <option value="angry">Агресивний</option>
+    </select>
+    <button id="recommendButton">Отримати рекомендацію пісні</button>
+    <p id="recommendation"></p>
+ <img id="songImage" src="" alt="Song Mood Image" style="display: none;">
+
+    <script>
+        const moodSongs = {
+            happy: {song: "Move Your Body - Sia",
+            image: "https://images.genius.com/1bac9cb351d019efe906f11e5e61d6bb.300x300x1.png"},
+            sad: {song: "the remedy for a broken heart - XXXTENTACION",
+            image: "https://images.genius.com/d562a7fbf881bce32b18fcd329fc86bc.999x999x1.png"},
+            energetic: {song:"MONEY ON THE DASH - SPED UP - Elley Duhe, Whethan",
+            image: "https://i.scdn.co/image/ab67616d0000b273cd4563537bf6c2fcf28a9182"},
+            relaxed: {song: "Повільно - Adam",
+            image: "https://i.scdn.co/image/ab67616d0000b2735c8ad6bcb76bd3741eda99f5"},
+            romantic: {song:"Dragon - Angelicca",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcsHQeshCV8R00SQSOzsGjBTbH8pl4SedQkw&s"},
+            angry: {song:"Never met - ENCASSATOR",
+            image: "https://i.scdn.co/image/ab67616d0000b273252accba732348e1c68e01b4"},
+        };
+
+        document.getElementById("recommendButton").addEventListener("click", function() {
+            const mood = document.getElementById("s1").value;
+            const recommendation = moodSongs[mood] || {song:"Sorry, no song available for this mood.", image:""};
+ // Відобразити назву пісні
+            document.getElementById("recommendation").innerText = recommendation.song;
+            // Відобразити зображення
+            const songImage = document.getElementById("songImage");
+            if (recommendation.image) {
+                songImage.src = recommendation.image;
+                songImage.style.display = "block";
+            } else {
+                songImage.style.display = "none";
+            }
+        });
+    </script>
+     <button class="back-button" onclick="window.location.href='ЛР.html#page7'">Повернутися на головну</button>
+</body>
+</html>

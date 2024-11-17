@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            background-color: #800080;
+            color: black;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        select, button {
+            margin: 10px 0;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #6200ea;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6A5ACD;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+        .back-button {
+            background-color: #6200ea;
+            color: white; /* Білий текст */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Оберіть жанр музики</h1>
+    <select id="s2">
+        <option value="rock">Рок</option>
+        <option value="pop">Поп</option>
+        <option value="jazz">Джаз</option>
+        <option value="classical">Класика</option>
+        <option value="phonk">Фонк</option>
+        <option value="ukrainian">Українське</option>
+    </select>
+    <button id="showSongsButton">Показати</button>
+    <ul id="songList"></ul>
+
+    <script>
+        const genreSongs = {
+            rock: [
+                "Bohemian Rhapsody - Queen",
+                "Stairway to Heaven - Led Zeppelin",
+                "Smells Like Teen Spirit - Nirvana"
+            ],
+            pop: [
+                "Shape of You - Ed Sheeran",
+                "Blinding Lights - The Weeknd",
+                "Levitating - Dua Lipa"
+            ],
+            jazz: [
+                "What a Wonderful World - Louis Armstrong",
+                "Take Five - Dave Brubeck",
+                "So What - Miles Davis"
+            ],
+            classical: [
+                "Clair de Lune - Claude Debussy",
+                "Symphony No. 5 - Beethoven",
+                "The Four Seasons - Vivaldi"
+            ],
+            phonk: [
+                "JOGO DE TOLOS - Scrythermane, luc wall, Lurk",
+                "Vai Me Bota - KREZUS, Mc Lysa",
+                "UH VEI VEI - KREZUS"
+            ],
+            ukrainian: [
+                "Як ніколи - Океан Ельзи",
+                "Горе долом - Христина Соловій",
+                "По-за ночі - Gerdan Theatre"
+            ]
+        };
+
+        document.getElementById("showSongsButton").addEventListener("click", function() {
+            const genre = document.getElementById("s2").value;
+            const songs = genreSongs[genre] || [];
+
+            const songList = document.getElementById("songList");
+            songList.innerHTML = ''; // Очищаємо список перед виведенням нових пісень
+
+            songs.forEach(function(song) {
+                const li = document.createElement("li");
+                li.innerText = song;
+                songList.appendChild(li);
+            });
+        });
+    </script>
+     <button class="back-button" onclick="window.location.href='ЛР.html#page7'">Повернутися на головну</button>
+</body>
+</html>

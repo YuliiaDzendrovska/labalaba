@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музичний квіз</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h2 {
+            margin: 0;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .result {
+            display: none;
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #6200ea;
+            color: white; /* Білий текст */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Музичний Квіз</h1>
+        <div class="question" id="question1">
+            <h2>1. Хто є автором пісні "Червона рута"?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="correct"> Володимир Івасюк</li>
+                <li><input type="radio" name="q1" value="wrong"> Софія Ротару</li>
+                <li><input type="radio" name="q1" value="wrong"> Тарас Петриненко</li>
+                <li><input type="radio" name="q1" value="wrong"> Олександр Пономарьов</li>
+            </ul>
+        </div>
+        <div class="question" id="question2">
+            <h2>2. Яка пісня стала переможцем Євробачення 2016?</h2>
+            <ul class="options">
+              <li><input type="radio" name="q6" value="wrong"> "Wild Dances" - Руслана</li>
+              <li><input type="radio" name="q6" value="wrong"> "Shady Lady" - Ані Лорак</li>
+              <li><input type="radio" name="q6" value="wrong"> "Tick-Tock" - Марія Яремчук</li>
+              <li><input type="radio" name="q6" value="correct"> "1944" - Джамала</li>
+            </ul>
+        </div>
+        <div class="question" id="question3">
+            <h2>3. Яка пісня стала гімном Революції Гідності?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="correct"> "Пливе кача"</li>
+                <li><input type="radio" name="q3" value="wrong"> "Воїни світла"</li>
+                <li><input type="radio" name="q3" value="wrong"> "Лента за лентою"</li>
+                <li><input type="radio" name="q3" value="wrong"> "Гей, соколи"</li>
+            </ul>
+        </div>
+        <div class="question" id="question4">
+            <h2>4. Хто є автором пісні "Україна - це ти"?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="wrong"> Джамала</li>
+                <li><input type="radio" name="q4" value="wrong"> Руслана</li>
+                <li><input type="radio" name="q4" value="correct"> Тіна Кароль</li>
+                <li><input type="radio" name="q4" value="wrong"> Ірина Білик</li>
+            </ul>
+        </div>
+        <div class="question" id="question5">
+            <h2>5. Який гурт виконав пісню "Обійми"?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q5" value="wrong"> Бумбокс</li>
+                <li><input type="radio" name="q5" value="correct"> Океан Ельзи</li>
+                <li><input type="radio" name="q5" value="wrong"> Скрябін</li>
+                <li><input type="radio" name="q5" value="wrong"> ТНМК</li>
+            </ul>
+        </div>
+        <button onclick="checkAnswers()">Відправити</button>
+        <div class="result" id="result">
+            <h2>Ваш результат: <span id="score"></span>/5</h2>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(question => {
+                const selectedOption = question.querySelector('input[type="radio"]:checked');
+                if (selectedOption && selectedOption.value === 'correct') {
+                    score++;
+                }
+            });
+            document.getElementById('score').textContent = score;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+     <button class="back-button" onclick="window.location.href='ЛР.html#page7'">Повернутися на головну</button>
+</body>
+</html>

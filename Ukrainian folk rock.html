@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* Загальний стиль для сторінки */
+        .page {
+            display: flex;
+            flex-direction: column;
+            height: auto; /* Дозволяє сторінці бути довшою за екран */
+            min-height: 100vh; /* Мінімальна висота сторінки - це висота екрана */
+            overflow-y: auto; /* Додає вертикальний скролінг, якщо сторінка довша за екран */
+        }
+
+        /* Верхня частина сторінки */
+        .top-section {
+            display: flex; /* Використовуємо flexbox для поділу на три частини */
+            height: 30%; /* Встановлюємо висоту верхньої частини на 30% */
+            border-bottom: 5px solid white; /* Біла рамка знизу, товщина 3px */
+        }
+
+        /* Кожна частина верхньої частини */
+        .top-left, .top-center, .top-right {
+            height: 100%; /* Встановлюємо висоту кожної частини на 100% від верхньої секції */
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center; /* Вирівнювання по горизонталі */
+            align-items: center; /* Вирівнювання по вертикалі */
+        }
+
+        /* Верхня ліва частина */
+        .top-left {
+            width: 10%; /* 30% ширини */
+            background-color: #800080; /* Ніжно фіолетовий */
+            border-right: 5px solid white; /* Біла смуга справа, товщина 3px */
+        }
+
+        /* Центральна частина верхньої секції */
+        .top-center {
+            width: 80%; /* 40% ширини */
+            background-color: #6A5ACD; /* Ніжно блакитний */
+            border-left: 5px solid white; /* Біла смуга зліва, товщина 3px */
+            border-right: 5px solid white; /* Біла смуга справа, товщина 3px */
+        }
+
+        /* Верхня права частина */
+        .top-right {
+            width: 10%; /* 30% ширини */
+            background-color: #800080; /* Ніжно фіолетовий */
+            border-left: 5px solid white; /* Біла смуга зліва, товщина 3px */
+        }
+
+        /* Нижні частини сторінки: ліва, центральна та права */
+        .bottom-sections {
+            display: flex;
+            height: 70%; /* Оскільки верхня частина займає 30%, залишок займає ця частина */
+            border-top: 7px solid white; /* Біла смуга між верхньою та нижньою частинами, товщина 3px */
+        }
+
+        /* Ліва частина */
+        .left-section {
+            width: 10%; /* 30% ширини */
+            background-color: #800080; /* Ніжно фіолетовий колір */
+            padding: 20px;
+
+        }
+
+        /* Центральна частина */
+        .center-section {
+            width: 80%; /* 40% ширини */
+            background-color:#6A5ACD; /* Ніжно блакитний колір */
+            padding: 20px;
+            border-right: 8px solid white; /* Біла смуга справа, товщина 3px */
+            border-left: 8px solid white; /* Біла смуга зліва, товщина 3px */
+        }
+
+        /* Права частина */
+        .right-section {
+            width: 10%; /* 30% ширини */
+            background-color: #800080; /* Ніжно фіолетовий колір */
+            padding: 20px;
+            display: flex;
+           flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Стиль для списку пісень */
+        .song {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .song-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .song-title {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .song-image {
+            width: 100%; /* Ви можете встановити конкретні розміри */
+            max-width: 200px;
+            height: auto;
+            border-radius: 5px;
+        }
+        /* Стиль для кнопки */
+        .back-button {
+            background-color: #b84dff; /* Зелений фон */
+            color: white; /* Білий текст */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* При наведенні на кнопку */
+        .back-button:hover {
+            background-color: #45a049; /* Темніший зелений при наведенні */
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="top-section">
+        <div class="top-left">
+          <!-- Ліва частина верхньої частини -->
+        </div>
+        <div class="top-center">
+            <!-- Центральна частина верхньої частини -->
+            <h1>Рейтинг прослуховувань протягом останніх 4-х тижнів</h1>
+        </div>
+        <div class="top-right">
+          <!-- Права частина верхньої частини -->
+           <button class="back-button" onclick="window.location.href='ЛР.html#page2'">Повернутися на головну</button>
+       </div>
+   </div>
+   <div class="bottom-sections">
+       <div class="left-section">
+            <!-- Ліва частина -->
+
+        </div>
+        <div class="center-section">
+            <div class="song">
+                <p class="song-number">1</p>
+                <h3 class="song-title">Як ніколи</h3>
+                <img src="https://i1.sndcdn.com/artworks-m662hfyDVEmy95wV-4ltkhg-t500x500.jpg" alt="Пісня 1" class="song-image">
+            </div>
+            <div class="song">
+                <p class="song-number">2</p>
+                <h3 class="song-title">По-за ночі</h3>
+                <img src="https://i.ytimg.com/vi/WiZhzvS86Ic/sddefault.jpg" alt="Пісня 2" class="song-image">
+            </div>
+            <div class="song">
+                <p class="song-number">3</p>
+                <h3 class="song-title">Не лякай</h3>
+                <img src="https://cdns-images.dzcdn.net/images/cover/b1f9004c29f5bed1e26d30f7c2098dbc/0x1900-000000-80-0-0.jpg" alt="Пісня 3" class="song-image">
+            </div>
+            <div class="song">
+                <p class="song-number">4</p>
+                <h3 class="song-title">Пісня буде поміж нас</h3>
+                <img src="https://i1.sndcdn.com/artworks-g9ai4RCybpkJI9zP-biPFtA-t500x500.jpg" alt="Пісня 4" class="song-image">
+            </div>
+            <div class="song">
+                <p class="song-number">5</p>
+                <h3 class="song-title">Fortepiano</h3>
+                <img src="https://musiua.com/uploads/cover/release/200x200/f4/7/hristina-soloviy-fortepiano.webp" alt="Пісня 5" class="song-image">
+            </div>
+            <div class="song">
+                <p class="song-number">6</p>
+                <h3 class="song-title">Горе долом</h3>
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/11/e0/bd/11e0bd8f-0cab-79fd-b4a7-ec86c7d74595/source/160x160bb.webp" alt="Пісня 6" class="song-image">
+            </div>
+            <div class="song">
+                <p class="song-number">7</p>
+                <h3 class="song-title">Камертон</h3>
+                <img src="https://i.ytimg.com/vi/OUwc26cujtU/maxresdefault.jpg" alt="Пісня 7" class="song-image">
+            </div>
+        </div>
+        <div class="right-section">
+            <!-- Права частина -->
+            <button class="back-button" onclick="window.location.href='ЛР.html#page2'">Повернутися на головну</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
